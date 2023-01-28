@@ -1,24 +1,16 @@
 package com.driver;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.processing.Generated;
 import java.util.Date;
-@Component
-public class Message {
 
+public class Message {
     private int id;
     private String content;
     private Date timestamp;
 
-    public Message(int id, String content) {
+    public Message(int id, String content, Date timestamp) {
         this.id = id;
         this.content = content;
-        this.timestamp = new Date(2023,01,28);
-    }
-
-    public Message() {
+        this.timestamp = timestamp;
     }
 
     public int getId() {
@@ -39,5 +31,9 @@ public class Message {
 
     public Date getTimestamp() {
         return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 }
