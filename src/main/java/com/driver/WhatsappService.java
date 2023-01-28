@@ -9,13 +9,9 @@ public class WhatsappService {
     WhatsappRepository repo;
 
     public String createUser(String number,String name) throws Exception {
-        String ans = repo.adduser(number,name);
-        if(ans.equals("SUCCESS")){
-            return ans;
-        }
-        else{
-            throw new Exception();
-        }
+        return repo.adduser(number,name);
+
+
     }
     public Group createGroup(List<User> users){
         return repo.addGroup(users);
@@ -24,22 +20,15 @@ public class WhatsappService {
         return repo.createMessage(content);
     }
     public int sendMessage(Message msg,User send,Group grp)throws Exception{
-        try {
-            int ans = repo.sendmessage(msg, send, grp);
-            return ans;
-        }
-        catch(Exception e){
-            throw new Exception();
-        }
+
+            return repo.sendmessage(msg, send, grp);
+
 
     }
     public String changeAdmin(User approver,User user,Group group) throws Exception{
-        try {
-            String ans = repo.changeAdmin(approver, user, group);
-            return ans;
-        }
-        catch(Exception e){
-            throw new Exception();
-        }
+
+            return repo.changeAdmin(approver, user, group);
+
+
     }
 }

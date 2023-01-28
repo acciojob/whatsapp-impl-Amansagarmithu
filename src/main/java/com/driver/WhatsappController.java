@@ -26,12 +26,9 @@ public class WhatsappController {
     public String createUser(String name, String mobile) throws Exception {
         //If the mobile number exists in database, throw "User already exists" exception
         //Otherwise, create the user and return "SUCCESS"
-        try {
+
             return whatsappService.createUser(name, mobile);
-        }
-        catch(Exception e){
-            throw new Exception();
-        }
+
     }
 
     @PostMapping("/add-group")
@@ -61,13 +58,10 @@ public class WhatsappController {
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
-        try {
-            int ans = whatsappService.sendMessage(message, sender, group);
-            return ans;
-        }
-        catch(Exception e){
-            throw new Exception();
-        }
+
+            return whatsappService.sendMessage(message, sender, group);
+
+
     }
     @PutMapping("/change-admin")
     public String changeAdmin(User approver, User user, Group group) throws Exception{
@@ -75,12 +69,10 @@ public class WhatsappController {
         //Throw "Approver does not have rights" if the approver is not the current admin of the group
         //Throw "User is not a participant" if the user is not a part of the group
         //Change the admin of the group to "user" and return "SUCCESS". Note that at one time there is only one admin and the admin rights are transferred from approver to user.
-        try {
+
             return whatsappService.changeAdmin(approver, user, group);
-        }
-        catch(Exception e){
-            throw new Exception();
-        }
+
+
     }
 
 //    @DeleteMapping("/remove-user")
