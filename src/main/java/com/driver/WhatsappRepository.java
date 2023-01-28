@@ -30,9 +30,9 @@ public class WhatsappRepository {
         this.users = new HashMap<>();
         this.mesg = new HashSet<>();
     }
-    public String adduser(String number,String name){
+    public String adduser(String number,String name)throws Exception{
         if(userMobile.contains(number)){
-            return "User already exists";
+            return "jaa";
         }
         User newuser = new User(name,number);
         users.put(number,newuser);
