@@ -61,19 +61,38 @@ public class WhatsappRepository {
     }
     public int sendmessage(Message msg,User ud,Group gp) throws Exception{
         if(!groupUserMap.containsKey(gp)){
+            System.out.println("Group does not exist");
             throw new Exception();
         }
         boolean tf = true;
         for(User u : groupUserMap.get(gp)){
             if(ud.getMobile().equals(u.getMobile())) tf = false;
         }
-        if(tf) throw new Exception();
+        if(tf){
+            System.out.println("You are not allowed to send message");
+            throw new Exception();
+        }
+        System.out.println("SUCCESS");
+        if(groupMessageMap.containsKey(gp)){
+            groupMessageMap.get(gp).add(msg);
+        }
+        else{
+            List<Message> arr = new ArrayList<>();
+            arr.add(msg);
+            groupMessageMap.put(gp,arr);
+        }
         return groupUserMap.get(gp).size();
     }
-    public String changeAdmin(User absorver,User us,Group gp){
-        if(!groupUserMap.containsKey(gp)) return "Group does not exist";
+    public String changeAdmin(User absorver,User us,Group gp) throws Exception{
+        if(!groupUserMap.containsKey(gp)){
+            System.out.println("Group does not exist");
+            throw new Exception();
+        }
         User ass = adminMap.get(gp);
-        if(!absorver.getMobile().equals(ass.getMobile())) return "Approver does not have rights";
+        if(!absorver.getMobile().equals(ass.getMobile())){
+            System.out.println("Approver does not have rights");
+            throw new Exception();
+        }
         boolean tf = true;
         for(User u : groupUserMap.get(gp)){
             if(us.getMobile().equals(u.getMobile())){
@@ -81,7 +100,10 @@ public class WhatsappRepository {
                 break;
             }
         }
-        if(tf) return "User is not a participant";
+        if(tf){
+            System.out.println("User is not a participant");
+            throw new Exception();
+        }
         adminMap.put(gp,us);
         return "SUCCESS";
     }

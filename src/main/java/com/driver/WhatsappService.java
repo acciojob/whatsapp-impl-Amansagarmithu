@@ -24,9 +24,22 @@ public class WhatsappService {
         return repo.createMessage(content);
     }
     public int sendMessage(Message msg,User send,Group grp)throws Exception{
-        return repo.sendmessage(msg,send,grp);
+        try {
+            int ans = repo.sendmessage(msg, send, grp);
+            return ans;
+        }
+        catch(Exception e){
+            throw new Exception();
+        }
+
     }
-    public String changeAdmin(User approver,User user,Group group){
-        return repo.changeAdmin(approver, user, group);
+    public String changeAdmin(User approver,User user,Group group) throws Exception{
+        try {
+            String ans = repo.changeAdmin(approver, user, group);
+            return ans;
+        }
+        catch(Exception e){
+            throw new Exception();
+        }
     }
 }
