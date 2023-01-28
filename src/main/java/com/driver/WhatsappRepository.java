@@ -26,7 +26,7 @@ public class WhatsappRepository {
         this.adminMap = new HashMap<Group, User>();
         this.userMobile = new HashSet<>();
         this.customGroupCount = 0;
-        this.messageId = 0;
+        this.messageId = 1;
         this.users = new HashMap<>();
         this.mesg = new HashSet<>();
     }
@@ -54,8 +54,8 @@ public class WhatsappRepository {
         return gr;
     }
     public int createMessage(String content){
-        Date date = new Date();
-        Message message = new Message(messageId++,content,date);
+        Message message = new Message(messageId,content);
+        messageId++;
         mesg.add(message);
         return message.getId();
     }
