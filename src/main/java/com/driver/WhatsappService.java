@@ -9,7 +9,7 @@ public class WhatsappService {
     WhatsappRepository whatsappRepository=new WhatsappRepository();
 
     public String createUser(String number, String name) throws Exception{
-        return whatsappRepository.addUser(number, name);
+        return whatsappRepository.createUser(number, name);
     }
 
     public Group createGroup(List<User> users){
@@ -21,7 +21,7 @@ public class WhatsappService {
     }
 
     public int sendMessage(Message message, User sender, Group group) throws Exception{
-        return whatsappRepository.sendMessageToGroup(message, sender, group);
+        return whatsappRepository.sendMessage(message, sender, group);
     }
 
     public String changeAdmin(User approver, User user, Group group) throws Exception{
