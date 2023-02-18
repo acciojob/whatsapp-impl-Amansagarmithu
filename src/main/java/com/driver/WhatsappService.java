@@ -9,6 +9,7 @@ public class WhatsappService {
     WhatsappRepository whatsappRepository=new WhatsappRepository();
 
     public String createUser(String number, String name) throws Exception{
+        System.out.println("hello");
         return whatsappRepository.createUser(number, name);
     }
 
@@ -26,6 +27,9 @@ public class WhatsappService {
 
     public String changeAdmin(User approver, User user, Group group) throws Exception{
         return whatsappRepository.changeAdmin(approver, user, group);
+    }
+    public String addAdmin(User Approver,User user,Group grp)throws Exception{
+        return whatsappRepository.addAdmin(Approver,user,grp);
     }
 
 }

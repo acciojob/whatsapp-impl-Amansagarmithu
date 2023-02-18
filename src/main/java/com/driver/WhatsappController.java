@@ -89,5 +89,10 @@ public class WhatsappController {
     // If the number of messages between given time is less than K, throw "K is greater than the number of messages" exception
 
 //        return whatsappService.findMessage(start, end, K);
+    @PostMapping("/add_Admin")
+    public ResponseEntity<String> addAdmin(@RequestBody() User approver, @RequestBody() User user,@RequestBody() Group group)throws Exception{
+        String result = whatsappService.addAdmin(approver,user,group);
+        return new ResponseEntity<>(result,HttpStatus.CREATED);
+    }
 //    }
 }

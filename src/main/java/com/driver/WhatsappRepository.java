@@ -17,6 +17,7 @@ public class WhatsappRepository
     private Map<Group, User> adminMap;
     private Map<String, User> userMap;
     private HashSet<String> userMobile;
+    private HashSet<User> admins;
     private int customGroupCount;
     private int messageId;
 
@@ -29,6 +30,7 @@ public class WhatsappRepository
         this.userMobile = new HashSet<>();
         this.customGroupCount = 0;
         this.messageId = 0;
+        this.admins = new HashSet<>();
     }
 
     // 1)
@@ -146,5 +148,21 @@ public class WhatsappRepository
         {
             throw new Exception("Group does not exist");
         }
+
+    }
+    public String addAdmin(User approver, User user, Group group) throws Exception{
+        if(!admins.contains(approver)){
+            throw new Exception("approver is not an admin so we can't add admin");
+        }
+        if(admins.contains(user)){
+           throw new Exception("User is already the admin and added in the group");
+        }
+        if(groupUserMap.containsKey(group)){
+            groupUserMap.get(group).add(user);
+            admins.add(user);
+            return "success";
+        }
+        throw new Exception("group doesn't exist");
+
     }
 }
